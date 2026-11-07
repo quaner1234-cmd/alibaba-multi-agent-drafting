@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "scope": "draft_only",
+  "model": "<MODEL>",
+  "kind": "injector",
+  "source_dir": "<workspace>/_agent_work/<source package dir>",
+  "title": "118-126 char natural title containing the exact model; no banned words",
+  "price": null,
+  "sales_unit": "Set",
+  "moq": null,
+  "unit_weight_kg": null,
+  "extra_weight_kg": 3,
+  "weight_kg": null,
+  "lead_quantity": null,
+  "lead_days": null,
+  "business_rules_version": "YYYY-MM-DD-HHMM",
+  "group": "verified platform group",
+  "category": "verified platform category path (pure value)",
+  "category_note": "optional caveats for the executor",
+  "template_id": "0000000000000",
+  "draft_id": null,
+  "main_images": [
+    "<workspace>/_agent_work/<pkg>/model(1).jpg",
+    "<workspace>/_agent_work/<pkg>/model(4).jpg",
+    "<workspace>/_agent_work/<pkg>/model(5).jpg",
+    "<workspace>/_agent_work/<pkg>/model(2).jpg",
+    "<workspace>/_agent_work/<pkg>/model(3).jpg"
+  ],
+  "detail_images": [
+    "<workspace>/_agent_work/<pkg>/model(8).jpg",
+    "<workspace>/_agent_work/<pkg>/model(9).jpg",
+    "<workspace>/_agent_work/<pkg>/model(6).jpg",
+    "<workspace>/_agent_work/<pkg>/model(10).jpg"
+  ],
+  "video": "<workspace>/_agent_work/<pkg>/Injector <MODEL>.mp4",
+  "video_bank": {
+    "status": "BANK_READY or UNKNOWN",
+    "nonfst_vid": null,
+    "note": ""
+  },
+  "image_bank": {
+    "status": "NOT_UPLOADED",
+    "reason": "gallery direct upload is the working path"
+  },
+  "company_card": "<workspace>/company-card.jpg",
+  "platform_dedup_status": "UNKNOWN - executor must re-check before creating",
+  "oe_note": "platform normalization strips - & / etc",
+  "model_visibility": "where the model is legible in the chosen images",
+  "title_review": {
+    "status": "FINAL",
+    "model": "<MODEL>",
+    "kind": "injector",
+    "title_sha256": "sha256 of the exact title text",
+    "semantic_checked": true,
+    "basis": "why every category/tech word is supported",
+    "technical_terms": {
+      "Common Rail": {
+        "model": "<MODEL>",
+        "source": "<catalog url>",
+        "reason": "..."
+      }
+    }
+  },
+  "sources": {
+    "model": "",
+    "title": "",
+    "price": "",
+    "sales_unit": "",
+    "moq": "",
+    "unit_weight_kg": "",
+    "weight_kg": "",
+    "lead_days": "",
+    "group": "",
+    "category": "",
+    "template_id": "",
+    "main_images": "",
+    "detail_images": "",
+    "video": ""
+  },
+  "review": {
+    "images_checked": false,
+    "first_detail_has_model": false,
+    "category_checked": false
+  }
+}
