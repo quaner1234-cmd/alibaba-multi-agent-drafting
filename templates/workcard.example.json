@@ -34,13 +34,14 @@
   ],
   "video": "<workspace>/_agent_work/<pkg>/Injector <MODEL>.mp4",
   "video_bank": {
-    "status": "BANK_READY or UNKNOWN",
+    "status": "UNKNOWN",
     "nonfst_vid": null,
-    "note": ""
+    "note": "Name/VID/non-FST registered from one row; executor does not replay video",
+    "nonfst_name": "<EXACT_NON_FST_FILE_NAME>"
   },
   "image_bank": {
-    "status": "NOT_UPLOADED",
-    "reason": "gallery direct upload is the working path"
+    "status": "UNKNOWN",
+    "note": "Prepared registration when available; otherwise selected local files are valid fallback"
   },
   "company_card": "<workspace>/company-card.jpg",
   "platform_dedup_status": "UNKNOWN - executor must re-check before creating",
@@ -81,5 +82,106 @@
     "images_checked": false,
     "first_detail_has_model": false,
     "category_checked": false
-  }
+  },
+  "card_version": "<PINNED_VERSION>",
+  "condition": null,
+  "condition_source": "Explicit approval for this product/batch; a template is not approval",
+  "price_tiers": {
+    "base_usd": null,
+    "tier_100pcs_usd": null,
+    "basis": "Confirmed batch policy; no discount inherited from another batch"
+  },
+  "bank_media": {
+    "main": [
+      {
+        "position": 1,
+        "local": "<workspace>/_agent_work/<pkg>/model(1).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 2,
+        "local": "<workspace>/_agent_work/<pkg>/model(4).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 3,
+        "local": "<workspace>/_agent_work/<pkg>/model(5).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 4,
+        "local": "<workspace>/_agent_work/<pkg>/model(2).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 5,
+        "local": "<workspace>/_agent_work/<pkg>/model(3).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      }
+    ],
+    "detail": [
+      {
+        "position": 1,
+        "local": "<workspace>/_agent_work/<pkg>/model(8).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 2,
+        "local": "<workspace>/_agent_work/<pkg>/model(9).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 3,
+        "local": "<workspace>/_agent_work/<pkg>/model(6).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      },
+      {
+        "position": 4,
+        "local": "<workspace>/_agent_work/<pkg>/model(10).jpg",
+        "bank_item_id": null,
+        "bank_name": "<REGISTERED_NAME>",
+        "bank_url": null,
+        "sha256": null,
+        "use_local": false
+      }
+    ]
+  },
+  "business_pending": [
+    {
+      "item": "condition_and_tiers",
+      "fact": "Example only; replace with this batch approval before execution"
+    }
+  ]
 }

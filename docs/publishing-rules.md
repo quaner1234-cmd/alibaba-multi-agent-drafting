@@ -21,11 +21,13 @@ store's choices; the *shape* of the rules is the reusable part.
   brands, or tech words.
 - Store brand prefix allowed; never borrow competitor branding.
 
-## Code consistency (four fields must match the source material's model)
+## Code consistency and actual engine codes
 
 1. OE code - **the platform normalizes away `-`, `&`, `/`...**; compare using the
    normalized value (`AB-120030` = `AB120030`).
-2. Engine code - only when the category actually provides the field; record N/A otherwise.
+2. Engine code - preserve an actual sourced engine code when present; it may differ
+   from the part model. Use a model fallback only under the batch's approved rule.
+   Record N/A only when the field is genuinely not applicable.
 3. Model (attributes) - exact source spelling.
 4. Custom attribute "Product name" - pure model code, no decorations.
 
@@ -39,6 +41,10 @@ Plus: SKU/spec fields inherited from the template must be re-checked for the old
 - Gross weight (platform field) **= unit weight x MOQ + fixed packaging allowance
   (3 kg)**. Record unit weight, allowance, and computed gross weight separately. Never
   write the single-unit weight; never multiply without the allowance.
+- Batch exceptions must bind rule version, batch, actual category and explicit product
+  scope together; a weight exception never leaks to every pump.
+- Tier prices require their own approved batch basis. A copied tier structure does
+  not authorize the inherited price or discount. Compute decimal currency exactly.
 
 ## Images and video
 
@@ -47,13 +53,20 @@ Plus: SKU/spec fields inherited from the template must be re-checked for the old
 - If the source set has no legible-model image, generate a caption variant ("Model: X"
   in the white margin) with the original preserved and the derivation recorded; never
   fake an engraving.
-- Video: the correct non-FST file by exact name; lookalike duplicates are checked by
-  cover-image hash. Both main and detail slots must be linked - doing one is not "done".
-- Reject assets showing third-party branded packaging (IPR risk).
+- Video: the preparer registers name, VID and non-FST status from the **same row**.
+  The executor uses that registration directly, then confirms both actual associations
+  on the saved server page. Do not repeat video playback at every handoff.
+- Trust supplied/selected images. Upload/register once, then check counts, first image,
+  basic order and obvious mixed products. Full byte downloads/OCR/authenticity checks
+  are exception diagnostics, not the standard workload. A caption is a model note,
+  not evidence of a physical engraving.
+- Obvious conflicting bank registrations affect only those slots: use the selected
+  local file rather than launching a complete old-bank audit.
 
 ## Condition, group, company
 
-- Condition: platform enum `New` - not the model code, not a custom spelling.
+- Condition: the explicitly confirmed platform enum for that product/batch. Do not
+  convert every "factory/original" package label or every copied template to `New`.
 - Group/category by product family, not inherited from the template.
-- Company intro: apply the store's chosen platform template in-product, then swap the
-  template's default contact card for the store's own card. Never edit the shared template.
+- Company intro: preserve a correctly inherited approved company module/card; otherwise
+  apply that module once in-product. Never overwrite the shared template.

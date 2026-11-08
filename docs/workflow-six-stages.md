@@ -3,17 +3,19 @@
 | Stage | What happens | Exit criterion / record |
 | --- | --- | --- |
 | 1. Scope and dedup | Read latest state files; search platform "all/published" and "drafts" for the model **and its normalized spelling** (the platform strips `-`, `&`, `/`...) | No duplicate, proceed. Duplicate, `SKIPPED` with search evidence. Never modify existing listings. |
-| 2. Copy and fields | Open a **new copy via the listing's real "Publish Similar Product" menu** (never a hand-built copy URL - that silently edits the source product and creates overwrite-prone pseudo-drafts). Confirm listing type (business-opportunity product) and category. Fill title, model codes, condition `New`, group, price/MOQ, logistics quantity = MOQ, gross weight | Fields committed to components and derived summaries correct (e.g. a "4 pcs = $X" line refreshes). Category switch means re-check fields. |
-| 3. Media | Exactly 5 main images + 4 detail images (first detail clearly shows the model), correct non-FST video linked in **both** main-video and detail-video slots | Counts, order, content verified in the gallery; both video slots matched by exact file name (cover-hash if lookalikes exist). |
-| 4. Company content | Apply the platform company template (e.g. `Jennifer`) inside the current product only; replace the template's default business card with the store's approved card; keep other template content | Company gallery count intact, no foreign contact card left. **Never** save changes into the shared template. |
+| 2. Copy and fields | Open a new copy through the real "Publish Similar Product" menu. Confirm draft-only listing type, category and source identity. Write product-specific codes, confirmed condition, prices/tiers and calculated logistics. Keep correctly inherited fixed values. | Component/derived values match the pinned card. A changed source is bound in a separate execution card; category changes require affected fields to be checked. |
+| 3. Media | Consume the prepared order: 5 main images + 4 details, first detail's model cue already prepared. Select the registered non-FST video in both slots. | Light execution checks: counts, first image/basic order, obvious mixed products and actual dual-video association. No repeated source-authenticity, OCR, playback or byte audit. |
+| 4. Company content | Preserve correctly inherited company content. If missing, apply the already-approved company module once inside the product. | Company content and approved card are present. Do not reapply a correct module or update the shared template. |
 | 5. Detect and save | Run the platform quality check, fix *real* findings; trigger **Save** only | Capture the real business success response (e.g. `submitDraft` success URL with the draft ID). Record `SAVED_UNVERIFIED`. |
-| 6. Fresh-server-page verification | Re-open the same draft ID from the server, trigger lazy loads, compare every field/asset in order | All required items match, `DONE/verified` with the score. A 4.9 "excellent" is recorded as 4.9, never rounded up. |
+| 6. Server-page verification | Read the same saved ID on the server page reached after save; otherwise open a controlled new page. Refresh server data and compare fields/associations with ordered light receipts. | Required execution checks pass, `DONE/verified` with the actual score. A 4.9 with no substantive missing item is not repeatedly reworked for 5.0. Human review remains separate. |
 
 ## Ordering rules that saved the batch
 
 - **Dedup is stage 1 for a reason**: the "publish similar" flow inherits the template's
   codes; missing a duplicate creates near-identical listings that are painful to unwind.
-- **First image first**: upload or insert the first main image and see it appear before
-  uploading the rest, so concurrent completion cannot reorder the gallery.
+- **Ordered media**: a prepared batch can be selected/uploaded within one script call.
+  Check actual resulting order; bank-list order is not product order. Preserve correct
+  prefixes on resume rather than deleting/reuploading the whole gallery.
 - **Save is stage 5, verification stage 6** - a save without stage 6 is `SAVED_UNVERIFIED`,
-  and stage 6 needs a *new* page load, not the still-open form.
+  and stage 6 needs the server's saved state, not the still-unsaved form. A same-ID
+  post-save server page qualifies; another tab is not intrinsically required.

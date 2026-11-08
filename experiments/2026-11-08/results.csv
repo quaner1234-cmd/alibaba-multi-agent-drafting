@@ -1,0 +1,11 @@
+public_id,kind,status,verified,quality_score,missing_count,image_check_level,wall_clock_seconds,relative_start_seconds,timing_scope,instrumented_field_seconds,save_command_seconds
+P01,injector,DONE,True,4.9,0,not_recorded,,,wall_not_recorded,61.875,12.531
+P02,injector,DONE,True,4.9,0,not_recorded,,,wall_not_recorded,69.437,11.266
+P03,injector,DONE,True,4.9,0,not_recorded,,,wall_not_recorded,64.453,12.453
+P04,injector,DONE,True,4.9,0,not_recorded,,,wall_not_recorded,63.438,10.875
+P05,injector,DONE,True,4.9,0,light,3122,0,reported_product_span,60.61,10.562;9.125
+P06,injector,DONE,True,4.9,0,light,2212,4711,reported_product_span,60.655,10.734
+P07,injector,DONE,True,4.9,0,light,14289,7881,overlapping_recovery_span,63.157,10.515
+P08,injector,DONE,True,4.9,0,light,2915,14072,reported_product_span,62.187,10.157
+P09,injector,DONE,True,4.9,0,light,1923,17061,reported_product_span,60.11,10.625
+P10,pump,DONE,True,5.0,0,light,1685,19038,reported_product_span,68.469,10.125

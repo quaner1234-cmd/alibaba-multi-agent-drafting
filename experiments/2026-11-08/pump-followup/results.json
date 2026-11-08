@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "batch_id": "pump-followup-01",
+  "observation_date": "2026-11-08",
+  "record_type": "desensitized_derived_observation",
+  "evidence_boundary": "Private executor result records; no new live platform audit or human approval inferred",
+  "timing_boundary": "Instrumented commands are partial timings; product spans may overlap; no sum or model ranking",
+  "products": [
+    {
+      "public_id": "P01",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": 2131,
+      "relative_start_seconds": 0,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 55.282,
+      "save_command_seconds": [
+        8.39
+      ]
+    },
+    {
+      "public_id": "P02",
+      "kind": "pump",
+      "status": "SAVED_UNVERIFIED",
+      "verified": false,
+      "quality_score": 3.9,
+      "missing_count": 2,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": 2550,
+      "relative_start_seconds": 2151,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 51.344,
+      "save_command_seconds": []
+    },
+    {
+      "public_id": "P03",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 56.078,
+      "save_command_seconds": [
+        9.922
+      ]
+    },
+    {
+      "public_id": "P04",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 63.14,
+      "save_command_seconds": [
+        8.656
+      ]
+    },
+    {
+      "public_id": "P05",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 68.781,
+      "save_command_seconds": [
+        10.5,
+        11.063
+      ]
+    },
+    {
+      "public_id": "P06",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 76.578,
+      "save_command_seconds": [
+        11.203
+      ]
+    },
+    {
+      "public_id": "P07",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 65.485,
+      "save_command_seconds": [
+        10.625
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "observation_date": "2026-11-08",
+  "interaction_sample": {
+    "public_id": "P09",
+    "wall_clock_seconds": 1923,
+    "tool_calls": 56,
+    "main_image_selection": {
+      "window_seconds": 238,
+      "definition": "first tool dispatch through final tool completion; includes observations and response gaps"
+    },
+    "detail_image_phase": {
+      "window_seconds": 124,
+      "definition": "first tool dispatch through final tool completion; includes observations and response gaps"
+    },
+    "dual_video_selection": {
+      "window_seconds": 260,
+      "definition": "first tool dispatch through final tool completion; includes observations and response gaps"
+    },
+    "image_selection_command_seconds": 40,
+    "four_detail_upload_command_seconds": 39,
+    "limit": "One recovery-affected run with model/provider changes; not a controlled speed comparison"
+  },
+  "prepared_batches": [
+    {
+      "public_batch_id": "prep-A",
+      "products": 5,
+      "image_slots": 45,
+      "new_upload_slots_reported": 15,
+      "reused_slots_reported": 30,
+      "missing_slots_reported": 0,
+      "nonfst_video_registrations": 5,
+      "complete_wall_clock_seconds": null
+    },
+    {
+      "public_batch_id": "prep-B-takeover",
+      "products": 5,
+      "image_slots": 45,
+      "new_upload_slots_reported": 9,
+      "reused_slots_reported": 36,
+      "missing_slots_reported": 0,
+      "nonfst_video_registrations": 5,
+      "complete_wall_clock_seconds": null
+    }
+  ],
+  "prepared_batch_limit": "Counts are slot registrations, not counts of globally unique media. Partial first-output times are not complete active-work or batch timing.",
+  "next_five_trial": {
+    "status": "IMPLEMENTED_UNVERIFIED",
+    "condition_and_tier_policy": "Confirmed only for the assigned five; commercial values withheld",
+    "local_fallback_slots_per_product": [
+      2,
+      2,
+      2,
+      6,
+      4
+    ],
+    "reason": "Existing metadata mapped the same bank ID to different file hashes; route only these slots to supplied local files, without a new content audit",
+    "runtime_limit": "No completed result records observed at export. This does not prove no in-flight work exists.",
+    "source_workspace_offline_tests": {
+      "count": 210,
+      "result": "PASS",
+      "scope": "private operational helpers; not the public repository test suite"
+    }
+  },
+  "privacy": "No source model codes, commercial prices, product/media IDs, contacts, browser sessions or local paths are included",
+  "inventory_history": {
+    "unit": "package-level candidate screen; not unique products or ready drafts",
+    "indexed_packages": 1689,
+    "parsed_model_packages": 1629,
+    "unparsed_model_packages": 60,
+    "video_filename_packages": 1482,
+    "multi_package_model_groups": 87,
+    "candidate_pool_by_revision": {
+      "v1": 1371,
+      "v2": 1189,
+      "v3": 1183,
+      "v4": 1182
+    },
+    "readiness_limit": "Historical non-atomic snapshot; per-product business/category decisions and one executor duplicate check still required"
+  }
+}

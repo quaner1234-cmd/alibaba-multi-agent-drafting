@@ -1,6 +1,8 @@
 # Browser automation recipes (BrowserSkill / bsk)
 
-All tested in production. Assumes the public BrowserSkill extension+CLI model:
+These are observations from specific layouts, not guarantees for every current page.
+New integrated helpers remain runtime-unverified until their assigned trial. Assumes
+the BrowserSkill extension+CLI model:
 `cooperate sync` returns a `context_id` (plus a fresh `observation_id`) that
 DOM-targeted actions require; element refs (`@eN`) re-number on every observation.
 
@@ -14,8 +16,9 @@ DOM-targeted actions require; element refs (`@eN`) re-number on every observatio
 - A minimized agent window reports viewport 0x0 and every geometry-dependent call
   fails with misleading errors ("pointer target moved", "could not resolve geometry").
   Restore the window first.
-- After a wedge ("A page frame is not responding"): check for native dialogs first;
-  reload the tab or restart only your own session. Do not blind-replay the last action.
+- After a wedge ("A page frame is not responding"), inspect the original operation,
+  native dialog and ownership first. Preserve unsaved work; do not reload or stop a
+  session just to recover control. Do not blind-replay the last action.
 
 ## Reading pages
 
@@ -56,9 +59,15 @@ Framework-controlled inputs silently accept DOM writes while committing nothing:
   (store the original style, force visible/positioned), take a fresh ref, upload with
   the ref and multiple `--file` args, verify thumbnails, then restore the original
   style. React re-renders rebuild the input between uploads - re-reveal every time.
-- Gallery direct upload beats pre-loading the asset bank: the bank's *picker* inside
-  the product editor is the cross-origin blocker, while gallery file inputs are
-  reachable.
+- A later asset-bank uploader had a same-origin iframe with a real file input/drop
+  area. That route successfully preloaded missing images. Earlier picker limitations
+  do not establish that every bank route is blocked.
+- Use existing prepared registrations without a second content audit. Registered bank
+  selection and direct local upload are both valid paths; measure their complete UI
+  phases rather than claiming one is universally faster.
+- In a measured example, four local detail uploads completed inside one 39s command.
+  The surrounding UI phase was longer. Put repeated, freshly observed actions in one
+  bounded helper invocation to avoid a model decision between every small action.
 
 ## Video
 
@@ -66,20 +75,28 @@ Framework-controlled inputs silently accept DOM writes while committing nothing:
   take a fresh ref, upload with `--mode input`, then wait for the name plus thumbnail
   and the business completion response. An `upload ok` alone proves nothing.
 - "Already exists" is a *duplicate guard*, not an error: go reuse the existing asset.
-- Two search boxes (name vs ID); search by name. Lookalike same-name assets: compare
-  size and labels, preview, or match the cover-image hash shown in both bank and
-  product page.
+- Bank registration uses name search and same-row extraction of name/VID/non-FST status.
+  On the product selector, the observed VID field can target that prepared registration.
+  Match the name in that same result row; splitting all page text on "VID:" previously
+  paired a non-FST name with the adjacent FST row's ID.
 - Product side: the main-video dialog ("select from video bank") and the detail-video
   dialog ("select detail video") have identical buttons - read the dialog title.
 
 ## Save and verify
 
-- The sticky save bar is covered by the agent's own floating bar, so trigger the
-  button's DOM click after verifying its text ("Save"), never "Submit".
+- Verify the real Save control and use an authorized observed pointer/keyboard path.
+  Unknown native dialogs must be identified first; an overlay is not permission to
+  blindly press Space or bypass a tool refusal.
 - `click ok` does not mean persisted. Capture the business save response
   (`submitDraft` returning a success URL that contains the new draft ID), then open
   that ID fresh, trigger lazy loads (scroll, detail-editor init), and compare
   everything in order.
+- If Save already navigated the task tab to the same ID's server page, read fresh
+  server render data there. A separate reader tab is optional. This avoided repeated
+  new-tab failures caused by another stuck task tab in the observed run.
+- The light path uses ordered UI receipts (actual names/asset URLs) to resolve known
+  suffix stripping/server renaming. It does not download/hash every image; unresolved
+  order stays unresolved and gets a narrow quick check.
 - The structured-detail editor is lazy: its iframe/toolbar do not exist until you
   scroll to the section (and possibly tick a mode radio). Reading it before init
   returns a false zero.

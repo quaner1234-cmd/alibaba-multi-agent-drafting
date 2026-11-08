@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "batch_id": "draft-batch-02",
+  "observation_date": "2026-11-08",
+  "record_type": "desensitized_derived_observation",
+  "evidence_boundary": "Private executor result records; no new live platform audit or human approval inferred",
+  "timing_boundary": "Instrumented commands are partial timings; product spans may overlap; no sum or model ranking",
+  "products": [
+    {
+      "public_id": "P01",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 61.875,
+      "save_command_seconds": [
+        12.531
+      ]
+    },
+    {
+      "public_id": "P02",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 69.437,
+      "save_command_seconds": [
+        11.266
+      ]
+    },
+    {
+      "public_id": "P03",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 64.453,
+      "save_command_seconds": [
+        12.453
+      ]
+    },
+    {
+      "public_id": "P04",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "not_recorded",
+      "wall_clock_seconds": null,
+      "relative_start_seconds": null,
+      "timing_scope": "wall_not_recorded",
+      "instrumented_field_seconds": 63.438,
+      "save_command_seconds": [
+        10.875
+      ]
+    },
+    {
+      "public_id": "P05",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "light",
+      "wall_clock_seconds": 3122,
+      "relative_start_seconds": 0,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 60.61,
+      "save_command_seconds": [
+        10.562,
+        9.125
+      ]
+    },
+    {
+      "public_id": "P06",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "light",
+      "wall_clock_seconds": 2212,
+      "relative_start_seconds": 4711,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 60.655,
+      "save_command_seconds": [
+        10.734
+      ]
+    },
+    {
+      "public_id": "P07",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "light",
+      "wall_clock_seconds": 14289,
+      "relative_start_seconds": 7881,
+      "timing_scope": "overlapping_recovery_span",
+      "instrumented_field_seconds": 63.157,
+      "save_command_seconds": [
+        10.515
+      ]
+    },
+    {
+      "public_id": "P08",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "light",
+      "wall_clock_seconds": 2915,
+      "relative_start_seconds": 14072,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 62.187,
+      "save_command_seconds": [
+        10.157
+      ]
+    },
+    {
+      "public_id": "P09",
+      "kind": "injector",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 4.9,
+      "missing_count": 0,
+      "image_check_level": "light",
+      "wall_clock_seconds": 1923,
+      "relative_start_seconds": 17061,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 60.11,
+      "save_command_seconds": [
+        10.625
+      ]
+    },
+    {
+      "public_id": "P10",
+      "kind": "pump",
+      "status": "DONE",
+      "verified": true,
+      "quality_score": 5.0,
+      "missing_count": 0,
+      "image_check_level": "light",
+      "wall_clock_seconds": 1685,
+      "relative_start_seconds": 19038,
+      "timing_scope": "reported_product_span",
+      "instrumented_field_seconds": 68.469,
+      "save_command_seconds": [
+        10.125
+      ]
+    }
+  ]
+}
