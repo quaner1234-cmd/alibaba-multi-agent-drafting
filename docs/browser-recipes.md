@@ -1,10 +1,62 @@
-# Browser automation recipes (BrowserSkill / bsk)
+# Browser automation recipes
 
 These are observations from specific layouts, not guarantees for every current page.
-New integrated helpers remain runtime-unverified until their assigned trial. Assumes
-the BrowserSkill extension+CLI model:
+Two routes are recorded: the **current** native logged-in Chromium route (2026-11-12)
+below, and the **historical** extension/CLI route (2026-11-08) later in this file.
+Recipes from one route are not automatically valid for the other.
+
+## Native logged-in Chromium (current, 2026-11-12)
+
+The executor drives a desktop Chromium with a persistent, human-logged-in profile via a
+process-level SDK/CLI. See [setup-and-tools.md](setup-and-tools.md) and
+[executor-pipeline.md](executor-pipeline.md).
+
+- Each CLI invocation starts a short-lived process (~2 s of overhead). Real speed comes
+  from **batching repeated steps into one invocation**, not from adding more single-step
+  calls.
+- Locators must resolve to exactly one element that is inside the viewport. Scroll the
+  target into view first; tag the first match when the DOM has duplicates. Keyboard and
+  mouse input can only be added incrementally to an existing script, not replaced
+  wholesale.
+- Framework-controlled inputs: click → select → `Input.insertText` → native setter, then
+  re-read the value. A single merged setter that returns `undefined` is not a write.
+- Lazy-loaded dropdowns (company template): one short probe can return zero options
+  (`no template option`). Poll in bounded rounds (e.g. 2 × 8 s) and allow one re-open of
+  the dropdown.
+- A suggestion overlay left open by a previous field can intercept pointer events on the
+  next field. Close floating layers (bounded Escape rounds) before writing, then use the
+  native setter plus a page-level Enter. The symptom is a timeout on a selector that
+  *did* match exactly one input.
+- Cross-origin video iframe: walk the frame tree, create an isolated world for that
+  frame, set the VID in that world with `input`/`change` events, then click inside the
+  frame. Coordinate clicks and top-page evaluation do not reach it.
+- Detail images: upload one at a time and verify the count after each, against a
+  relative baseline. A `N not accepted` failure was one-off jitter — re-run the whole
+  card (up to a small retry bound), never change the asset or the card.
+- Main images: one batched upload of all positions is both faster and lossless
+  (~19 s → ~11 s in one layout). Cross-group duplicate images are allowed; only check
+  for duplicates within a group. Recognize both `1.jpg` and `xxx(1).jpg` source names.
+- After a category switch the editor reloads and the URL loses the "new template copy"
+  flag; restore the true flag with `history.replaceState` before the guarded field
+  writer runs. Perform the category switch **before** any field write — unsaved edits
+  are discarded.
+- Product groups are a pre-existing tree: no free-text input and no create entry. Click
+  the node's **label** element; clicking the surrounding `<li>` leaves the value
+  unchanged (`group not applied` on a dry run).
+- The selling-points generator button sits outside the viewport and needs a long
+  bounded wait; short polling (300–350 ms) caused failures.
+- Registries: read with BOM tolerance (`utf-8-sig`). A UTF-8 BOM written by a Windows
+  shell made the first line unparseable and silently re-queued already-created products.
+- Save and verify: capture the business save response with the new draft ID, then
+  re-open that same ID from the server. Promo dialogs re-appear after every reload.
+
+## Historical extension/CLI route (2026-11-08, retired for this workflow)
+
+Assumes the BrowserSkill extension+CLI model:
 `cooperate sync` returns a `context_id` (plus a fresh `observation_id`) that
 DOM-targeted actions require; element refs (`@eN`) re-number on every observation.
+The sections below are kept as history; new integrated helpers remained
+runtime-unverified at that snapshot.
 
 ## Session discipline
 

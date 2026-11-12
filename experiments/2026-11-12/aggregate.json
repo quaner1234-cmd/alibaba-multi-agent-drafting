@@ -1,0 +1,126 @@
+{
+  "record_type": "desensitized_aggregate_observation",
+  "date": "2026-11-12",
+  "scope": "draft_only",
+  "published_products": 0,
+  "privacy_note": "Aggregate counts only. No product codes, prices, draft IDs, media IDs, account names, session IDs or local paths.",
+  "timing_rules": {
+    "null_means": "not recorded, not zero",
+    "sum_across_cohorts": false,
+    "reason": "Overlapping recovery windows and model/provider changes between sessions; no speed ranking is claimed."
+  },
+  "cohorts": [
+    {
+      "cohort_id": "C1",
+      "cards": 26,
+      "saved_and_readback_pass": 26,
+      "transient_retries": 4,
+      "median_seconds": 87.4,
+      "min_seconds": 69,
+      "max_seconds": 155,
+      "pure_execution_seconds": 2365,
+      "wall_clock_seconds": null,
+      "note": "Pilot card failed on a lazy-loaded template dropdown; fixed and re-run. Wall-clock window included debugging."
+    },
+    {
+      "cohort_id": "C2",
+      "cards": 5,
+      "saved_and_readback_pass": 5,
+      "transient_retries": 1,
+      "median_seconds": null,
+      "min_seconds": null,
+      "max_seconds": null,
+      "pure_execution_seconds": null,
+      "wall_clock_seconds": null,
+      "note": "First card 78.0 s; no aggregate timing recorded."
+    },
+    {
+      "cohort_id": "C3",
+      "cards": 5,
+      "saved_and_readback_pass": 5,
+      "transient_retries": 1,
+      "median_seconds": 92.8,
+      "min_seconds": null,
+      "max_seconds": null,
+      "pure_execution_seconds": null,
+      "wall_clock_seconds": null,
+      "note": "New card pool; one transient detail-image retry."
+    },
+    {
+      "cohort_id": "C4",
+      "cards": 5,
+      "saved_and_readback_pass": 5,
+      "transient_retries": 0,
+      "median_seconds": 95.7,
+      "min_seconds": null,
+      "max_seconds": null,
+      "pure_execution_seconds": null,
+      "wall_clock_seconds": null,
+      "note": "Corrected-title cohort; zero retries, zero media jitter."
+    },
+    {
+      "cohort_id": "C5",
+      "cards": 1,
+      "saved_and_readback_pass": 1,
+      "transient_retries": 0,
+      "median_seconds": null,
+      "min_seconds": null,
+      "max_seconds": null,
+      "pure_execution_seconds": null,
+      "wall_clock_seconds": null,
+      "readback_fields_passed": 11,
+      "readback_fields_total": 11,
+      "note": "Capability proof for multi-family category switch and group write."
+    }
+  ],
+  "repairs": {
+    "lead_time_days": {
+      "drafts_reviewed": 34,
+      "already_compliant": 7,
+      "corrected": 27,
+      "failures": 0,
+      "approx_seconds_each": 22,
+      "verification": "same draft ID re-opened from server and value compared"
+    },
+    "lead_time_quantity": {
+      "drafts_corrected": 1,
+      "verification": "same draft ID re-opened from server and value compared"
+    }
+  },
+  "card_pool": {
+    "packages": 4,
+    "cards": 600,
+    "card_ready": 600,
+    "auditor_initial": {
+      "category_mismatch": 97,
+      "category_substring_trap": 84,
+      "group_not_written": 255,
+      "title_padded": 439,
+      "exact_threshold_weight_cases": 6,
+      "video_none_ok": 112
+    },
+    "auditor_final": {
+      "blocker": 0,
+      "business": 0,
+      "quality": 4,
+      "note": "Four intentionally unchanged older titles."
+    },
+    "zero_finding_categories": [
+      "weight",
+      "price_ladder",
+      "lead_time",
+      "moq",
+      "image_hash",
+      "banned_words",
+      "cross_package_duplicates"
+    ],
+    "cards_released_after_executor_change": 255
+  },
+  "unresolved_limits": [
+    "43 cards in one family have a sales unit different from the copy source; runner does not write sales unit; platform-unverified.",
+    "Selling-points generator occasionally falls back to a generic value; those cards marked for human review.",
+    "Group labels are mapped semantically onto existing store groups; human confirmation of every mapping is pending.",
+    "Four older saved drafts retain padded titles by explicit instruction.",
+    "No publication, human approval, quality score or per-product result rows were exported."
+  ]
+}

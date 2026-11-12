@@ -31,6 +31,29 @@ readback and human approval are distinct claims. A source-workspace test pass do
 not establish current-page compatibility. Planned changes remain unverified until
 the assigned real product trial produces results.
 
+## Aggregate-only observations (2026-11-12)
+
+Not every update exports per-product rows. When no private result manifest is part of
+the update, publish **aggregate counts only** in the dated observation directory, with
+`null` for unrecorded timings, and state explicitly that no per-product rows, quality
+scores or human approvals were exported.
+
+- Cohort medians, ranges and pure-execution sums are reported **per cohort** and never
+  summed across cohorts: overlapping recovery windows and model/provider changes make
+  cross-cohort addition invalid.
+- "N offline checks passed" is a private-suite claim. It is a different suite from this
+  repository's public exporter tests, and neither establishes current-page compatibility
+  or live throughput.
+- "600/600 `CARD_READY`" is a validator claim. It does not imply that 600 products were
+  saved, that the executor can handle every family, or that a human approved anything.
+- A dry run, an `upload ok`, a click result, a process exit code and a validator pass
+  are distinct evidence classes. Only a real save response plus a same-ID server
+  read-back yields `SAVED_AND_READBACK_PASS`.
+- In-place repairs to existing drafts must re-open the same ID and verify the changed
+  value; count them separately from newly created drafts.
+- A capability change that releases held-back cards is a tooling fact, not a batch
+  result. Say how many cards were released and which single card proved the capability.
+
 ## Updating the public log
 
 1. Keep the private result files and private product-to-P01-style mapping outside

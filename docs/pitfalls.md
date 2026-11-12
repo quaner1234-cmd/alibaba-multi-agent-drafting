@@ -59,3 +59,60 @@
     reused a module; clean-source copying of all fixed fields still needed a real
     trial. Keep candidate plans, successful UI copying and inherited-field evidence
     as separate states. Always replace product-specific media, prices and codes.
+
+### Added 2026-11-12 (native-browser executor)
+
+22. **One source is not a skip set.** Reading only the batch log (or only the draft
+    registry) silently re-queued an already-created product. Use the **union** of both.
+23. **BOM breaks JSONL.** A Windows shell writing UTF-8 with a BOM made `json.loads`
+    fail on line 1, so the registry looked empty. Read registries and logs as
+    `utf-8-sig`.
+24. **Auto-detected registry paths.** Inferring the registry by walking ancestor
+    directories for a manifest fails for nested card packages and silently loses
+    registrations. Pass the registry path explicitly.
+25. **Relative manifest card paths + a different child cwd.** Batch children exited in
+    0.2 s with `FileNotFoundError` and a log line containing only `status: null`.
+    Resolve card paths against the manifest's own directory (or use absolute paths) and
+    record `returncode`/`stderr_tail`.
+26. **Lazy-loaded template dropdowns.** A single 350 ms probe returned `n: 0`
+    (`no template option`). Fixed with bounded polling rounds and one permitted re-open
+    — not a longer unconditional sleep.
+27. **A missing optional field is not "empty".** A card without lead-time quantity caused
+    the literal string `None` to be typed into a numeric input; the template's inherited
+    value survived while MOQ was 4. Derive quantity from MOQ and add both quantity and
+    days to server readback.
+28. **Business numbers copied into two documents go stale.** A state document still
+    said "+3 kg" while the rules file had already switched to a tiered allowance. One
+    canonical rules file, a fingerprint in the state block, and `--check` reporting
+    `STALE` fixed the root cause.
+29. **`includes()` is not a category guard.** One family name is a substring of another,
+    so the guard silently accepted the wrong category. Switch explicitly and read the
+    category back from the server.
+30. **Category navigation drops the "new template copy" flag.** The guarded field writer
+    then refused to write. `history.replaceState` restores true semantics — the page
+    really is a new template copy — rather than bypassing the guard.
+31. **Clicking a tree `<li>` does nothing.** The group control needs a click on the
+    node's **label**. The first dry run failed with `group not applied` while every
+    click appeared to succeed.
+32. **Generational validators are not interchangeable.** An older validator reported 11
+    false failures on newer cards. Use the validator for that schema generation, with an
+    explicit version match.
+33. **`detail image N not accepted` was jitter, not a bad asset.** Re-run the whole card
+    up to a small retry bound; never change the image or the card to "fix" it.
+34. **Price ladders need their second row added explicitly.** Without it the field writer
+    throws a row-count mismatch. The inherited custom "Weight" attribute row is a
+    separate trap: it is not the logistics gross weight and must be deleted.
+35. **A 100%-green validator is not executability.** A whole-pool audit of 600 cards
+    found 97 category mismatches, 255 missing group writes and 439 padded titles while
+    the official validator reported 600/600 `CARD_READY`. Add an auditor that checks
+    fields the executor actually writes, not just card shape.
+36. **Optimizing for a validator metric degrades the artifact.** Repeating a filler
+    phrase to reach the 118-character title floor produced 439 low-quality titles;
+    deleting the filler dropped them below the floor. Fix with substantive sourced
+    wording and recompute length/hash together.
+37. **Manifest display fields drift.** A `group` shown in a queue review was still the
+    old default for every card while the cards themselves were correct. Keep display
+    fields in sync so reviews are not misleading.
+38. **An in-place repair is not a save.** Correcting an existing draft must re-open the
+    same ID and read back the changed value; count repairs separately from newly
+    created drafts.

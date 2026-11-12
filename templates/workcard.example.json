@@ -1,51 +1,63 @@
 {
-  "schema_version": 1,
+  "schema_version": "workcard/v3",
   "scope": "draft_only",
   "model": "<MODEL>",
   "kind": "injector",
-  "source_dir": "<workspace>/_agent_work/<source package dir>",
-  "title": "118-126 char natural title containing the exact model; no banned words",
+  "source_dir": "<workspace>/<source package dir>",
+  "title": "118-126 char natural title containing the exact model; no banned words; substantive wording, no filler padding",
+  "title_length": null,
+  "title_sha256": "sha256 of the exact title text",
   "price": null,
   "sales_unit": "Set",
+  "sales_unit_note": "Must match the copy source. The executor does not write this field; a family whose unit differs from the copy source is an unresolved limit.",
   "moq": null,
   "unit_weight_kg": null,
-  "extra_weight_kg": 3,
-  "weight_kg": null,
+  "moq_total_weight_kg": null,
+  "extra_weight_kg": null,
+  "gross_weight_kg": null,
+  "weight_rule": "tiered: moq_total < 3 kg -> +1.5 kg; >= 3 kg -> +2.0 kg; exactly 3 kg belongs to the >= tier",
+  "rules_version": "<RULES_VERSION>",
   "lead_quantity": null,
-  "lead_days": null,
-  "business_rules_version": "YYYY-MM-DD-HHMM",
-  "group": "verified platform group",
+  "lead_quantity_rule": "derived from MOQ by the executor adapter; never left as a literal string",
+  "lead_days": "<LEAD_DAYS_POLICY>",
+  "lead_days_note": "uniform fixed value from the rules file, not the template's inherited value",
+  "group": "<CARD_GROUP_LABEL>",
+  "store_group": "<EXISTING_STORE_GROUP>",
+  "store_group_note": "The store exposes a fixed tree of existing groups. No free-text input and no create entry. Map explicitly; never inherit the default.",
   "category": "verified platform category path (pure value)",
-  "category_note": "optional caveats for the executor",
-  "template_id": "0000000000000",
+  "category_switch_required": false,
+  "category_note": "If true, the executor switches category before any field write and verifies it on the saved server page.",
+  "template_id": "<TEMPLATE_ID>",
   "draft_id": null,
   "main_images": [
-    "<workspace>/_agent_work/<pkg>/model(1).jpg",
-    "<workspace>/_agent_work/<pkg>/model(4).jpg",
-    "<workspace>/_agent_work/<pkg>/model(5).jpg",
-    "<workspace>/_agent_work/<pkg>/model(2).jpg",
-    "<workspace>/_agent_work/<pkg>/model(3).jpg"
+    "<workspace>/<pkg>/1.jpg",
+    "<workspace>/<pkg>/2.jpg",
+    "<workspace>/<pkg>/3.jpg",
+    "<workspace>/<pkg>/4.jpg",
+    "<workspace>/<pkg>/5.jpg",
+    "<workspace>/<pkg>/6.jpg"
   ],
   "detail_images": [
-    "<workspace>/_agent_work/<pkg>/model(8).jpg",
-    "<workspace>/_agent_work/<pkg>/model(9).jpg",
-    "<workspace>/_agent_work/<pkg>/model(6).jpg",
-    "<workspace>/_agent_work/<pkg>/model(10).jpg"
+    "<workspace>/<pkg>/01_glove_model.jpg",
+    "<workspace>/<pkg>/detail_2.jpg",
+    "<workspace>/<pkg>/detail_3.jpg",
+    "<workspace>/<pkg>/detail_4.jpg"
   ],
-  "video": "<workspace>/_agent_work/<pkg>/Injector <MODEL>.mp4",
+  "detail_image_note": "First detail image is a real gloved-hand model shot for this family; a legible engraving is not required because a human reviews it. Fall back to the model-note image with needs_review=true only when no glove photo exists.",
+  "video": "<workspace>/<pkg>/<MODEL>.mp4",
   "video_bank": {
-    "status": "UNKNOWN",
-    "nonfst_vid": null,
-    "note": "Name/VID/non-FST registered from one row; executor does not replay video",
-    "nonfst_name": "<EXACT_NON_FST_FILE_NAME>"
+    "status": "REGISTERED",
+    "nonfst_vid": "<VID>",
+    "nonfst_name": "<EXACT_NON_FST_FILE_NAME>",
+    "note": "Name/VID/non-FST registered from one row; executor does not replay video"
   },
   "image_bank": {
-    "status": "UNKNOWN",
-    "note": "Prepared registration when available; otherwise selected local files are valid fallback"
+    "status": "REGISTERED",
+    "note": "Prepared registration when available; selected local files are a valid fallback. Cross-group duplicates are allowed; check duplicates within a group only."
   },
   "company_card": "<workspace>/company-card.jpg",
-  "platform_dedup_status": "UNKNOWN - executor must re-check before creating",
-  "oe_note": "platform normalization strips - & / etc",
+  "platform_dedup_status": "CHECKED_BY_PREPARER - evidence in handoff; executor does not re-check",
+  "oe_note": "platform normalization strips - & / etc; a substring match is not a category check",
   "model_visibility": "where the model is legible in the chosen images",
   "title_review": {
     "status": "FINAL",
@@ -53,7 +65,7 @@
     "kind": "injector",
     "title_sha256": "sha256 of the exact title text",
     "semantic_checked": true,
-    "basis": "why every category/tech word is supported",
+    "basis": "why every category/tech word is supported; no filler phrase used to reach the length floor",
     "technical_terms": {
       "Common Rail": {
         "model": "<MODEL>",
@@ -69,9 +81,10 @@
     "sales_unit": "",
     "moq": "",
     "unit_weight_kg": "",
-    "weight_kg": "",
+    "gross_weight_kg": "",
     "lead_days": "",
     "group": "",
+    "store_group": "",
     "category": "",
     "template_id": "",
     "main_images": "",
@@ -80,103 +93,42 @@
   },
   "review": {
     "images_checked": false,
-    "first_detail_has_model": false,
-    "category_checked": false
+    "first_detail_is_glove_model": false,
+    "category_checked": false,
+    "group_checked": false
   },
   "card_version": "<PINNED_VERSION>",
   "condition": null,
   "condition_source": "Explicit approval for this product/batch; a template is not approval",
   "price_tiers": {
-    "base_usd": null,
-    "tier_100pcs_usd": null,
-    "basis": "Confirmed batch policy; no discount inherited from another batch"
+    "rule_version": "<TIER_RULE_VERSION>",
+    "rows": [
+      { "min_quantity": 1, "unit_price_usd": null },
+      { "min_quantity": 100, "unit_price_usd": null }
+    ],
+    "basis": "Confirmed batch policy; no discount inherited from another batch. The executor adds the second row explicitly."
   },
   "bank_media": {
     "main": [
-      {
-        "position": 1,
-        "local": "<workspace>/_agent_work/<pkg>/model(1).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 2,
-        "local": "<workspace>/_agent_work/<pkg>/model(4).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 3,
-        "local": "<workspace>/_agent_work/<pkg>/model(5).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 4,
-        "local": "<workspace>/_agent_work/<pkg>/model(2).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 5,
-        "local": "<workspace>/_agent_work/<pkg>/model(3).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      }
+      { "position": 1, "local": "<workspace>/<pkg>/1.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 2, "local": "<workspace>/<pkg>/2.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 3, "local": "<workspace>/<pkg>/3.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 4, "local": "<workspace>/<pkg>/4.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 5, "local": "<workspace>/<pkg>/5.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 6, "local": "<workspace>/<pkg>/6.jpg", "sha256": "<HASH>", "use_local": false }
     ],
     "detail": [
-      {
-        "position": 1,
-        "local": "<workspace>/_agent_work/<pkg>/model(8).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 2,
-        "local": "<workspace>/_agent_work/<pkg>/model(9).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 3,
-        "local": "<workspace>/_agent_work/<pkg>/model(6).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      },
-      {
-        "position": 4,
-        "local": "<workspace>/_agent_work/<pkg>/model(10).jpg",
-        "bank_item_id": null,
-        "bank_name": "<REGISTERED_NAME>",
-        "bank_url": null,
-        "sha256": null,
-        "use_local": false
-      }
+      { "position": 1, "local": "<workspace>/<pkg>/01_glove_model.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 2, "local": "<workspace>/<pkg>/detail_2.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 3, "local": "<workspace>/<pkg>/detail_3.jpg", "sha256": "<HASH>", "use_local": false },
+      { "position": 4, "local": "<workspace>/<pkg>/detail_4.jpg", "sha256": "<HASH>", "use_local": false }
     ]
+  },
+  "executor_contract": {
+    "validator": "generational validator with an explicit version match; CARD_READY required",
+    "save": "draft only; capture business response and new draft ID",
+    "readback": "same saved ID re-opened from the server; ordered checks include category, group, MOQ, lead-time quantity/days, gross weight, both price rows, condition, media counts/order and video associations",
+    "terminal_status": "SAVED_AND_READBACK_PASS"
   },
   "business_pending": [
     {
